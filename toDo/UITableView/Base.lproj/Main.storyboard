@@ -34,14 +34,14 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Add new note..." minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3OU-T6-22v">
-                                <rect key="frame" x="15" y="409" width="363" height="34"/>
+                                <rect key="frame" x="15" y="349" width="363" height="34"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="textColor" name="AccentColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NBV-C0-H3j">
-                                <rect key="frame" x="15" y="493" width="363" height="35"/>
+                                <rect key="frame" x="15" y="619" width="363" height="35"/>
                                 <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="filled" title="Save">
@@ -51,6 +51,10 @@
                                     <action selector="saveData:" destination="3dA-Po-gmn" eventType="touchUpInside" id="hTc-XV-LCf"/>
                                 </connections>
                             </button>
+                            <datePicker contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" style="wheels" translatesAutoresizingMaskIntoConstraints="NO" id="Kd3-VF-C3n">
+                                <rect key="frame" x="50" y="393" width="293" height="216"/>
+                                <color key="tintColor" systemColor="systemYellowColor"/>
+                            </datePicker>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="tVz-9M-jS7"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -59,13 +63,16 @@
                             <constraint firstItem="tVz-9M-jS7" firstAttribute="trailing" secondItem="NBV-C0-H3j" secondAttribute="trailing" constant="15" id="23s-bA-oiM"/>
                             <constraint firstItem="tVz-9M-jS7" firstAttribute="trailing" secondItem="3OU-T6-22v" secondAttribute="trailing" constant="15" id="5y5-xC-qKj"/>
                             <constraint firstItem="NBV-C0-H3j" firstAttribute="leading" secondItem="tVz-9M-jS7" secondAttribute="leading" constant="15" id="8G4-QH-TbY"/>
-                            <constraint firstItem="3OU-T6-22v" firstAttribute="centerY" secondItem="kzC-x1-TKy" secondAttribute="centerY" id="Mev-l4-sgD"/>
+                            <constraint firstItem="Kd3-VF-C3n" firstAttribute="top" secondItem="3OU-T6-22v" secondAttribute="bottom" constant="10" id="ENz-2m-5JH"/>
+                            <constraint firstItem="Kd3-VF-C3n" firstAttribute="leading" secondItem="tVz-9M-jS7" secondAttribute="leading" constant="50" id="KG2-Tv-QlX"/>
+                            <constraint firstItem="tVz-9M-jS7" firstAttribute="trailing" secondItem="Kd3-VF-C3n" secondAttribute="trailing" constant="50" id="LVg-71-PhZ"/>
+                            <constraint firstItem="3OU-T6-22v" firstAttribute="centerY" secondItem="kzC-x1-TKy" secondAttribute="centerY" constant="-60" id="Mev-l4-sgD"/>
                             <constraint firstItem="NBV-C0-H3j" firstAttribute="centerX" secondItem="kzC-x1-TKy" secondAttribute="centerX" id="at1-2m-7mN"/>
-                            <constraint firstItem="NBV-C0-H3j" firstAttribute="top" secondItem="3OU-T6-22v" secondAttribute="bottom" constant="50" id="bVJ-9E-YEM"/>
-                            <constraint firstItem="NBV-C0-H3j" firstAttribute="top" secondItem="3OU-T6-22v" secondAttribute="bottom" constant="50" id="w0t-EU-peO"/>
+                            <constraint firstItem="NBV-C0-H3j" firstAttribute="top" secondItem="Kd3-VF-C3n" secondAttribute="bottom" constant="10" id="vMR-qv-QXk"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="datePicker" destination="Kd3-VF-C3n" id="c9l-My-2tj"/>
                         <outlet property="textField" destination="3OU-T6-22v" id="rlM-Om-iGt"/>
                     </connections>
                 </viewController>
@@ -98,6 +105,9 @@
         </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemYellowColor">
+            <color red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

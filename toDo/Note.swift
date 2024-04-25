@@ -12,7 +12,7 @@ struct Note {
     var image: UIImage
     var group: String
     var isCompleted: Bool = false
-    
+    var date: Date
 }
 
 var imageArray: [UIImage] = [ UIImage(systemName: "cart.fill")!,

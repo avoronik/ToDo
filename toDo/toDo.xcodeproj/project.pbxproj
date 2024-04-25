@@ -15,8 +15,8 @@
 		B45733CD2B9DDB9D007A734C /* Base in Resources */ = {isa = PBXBuildFile; fileRef = B45733CC2B9DDB9D007A734C /* Base */; };
 		B45775BD2BA45A85002899D2 /* DetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B45775BC2BA45A85002899D2 /* DetailsViewController.swift */; };
 		B45776922BC9B00C002899D2 /* Note.swift in Sources */ = {isa = PBXBuildFile; fileRef = B45776912BC9B00B002899D2 /* Note.swift */; };
-		B45776952BCBB989002899D2 /* newCellTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B45776932BCBB989002899D2 /* newCellTableViewCell.swift */; };
-		B45776962BCBB989002899D2 /* newCellTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B45776942BCBB989002899D2 /* newCellTableViewCell.xib */; };
+		B45776952BCBB989002899D2 /* NewCellTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B45776932BCBB989002899D2 /* NewCellTableViewCell.swift */; };
+		B45776962BCBB989002899D2 /* NewCellTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B45776942BCBB989002899D2 /* NewCellTableViewCell.xib */; };
 		B457769B2BCD5BDF002899D2 /* Impact.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B45776972BCD5BDF002899D2 /* Impact.ttf */; };
 		B457769D2BCD5BDF002899D2 /* Phosphate.ttc in Resources */ = {isa = PBXBuildFile; fileRef = B45776992BCD5BDF002899D2 /* Phosphate.ttc */; };
 		B45776F52BD0225B002899D2 /* MONO PQU.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B45776F42BD0225B002899D2 /* MONO PQU.ttf */; };
@@ -34,8 +34,8 @@
 		B45733CE2B9DDB9D007A734C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B45775BC2BA45A85002899D2 /* DetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsViewController.swift; sourceTree = "<group>"; };
 		B45776912BC9B00B002899D2 /* Note.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Note.swift; sourceTree = "<group>"; };
-		B45776932BCBB989002899D2 /* newCellTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = newCellTableViewCell.swift; sourceTree = "<group>"; };
-		B45776942BCBB989002899D2 /* newCellTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = newCellTableViewCell.xib; sourceTree = "<group>"; };
+		B45776932BCBB989002899D2 /* NewCellTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewCellTableViewCell.swift; sourceTree = "<group>"; };
+		B45776942BCBB989002899D2 /* NewCellTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NewCellTableViewCell.xib; sourceTree = "<group>"; };
 		B45776972BCD5BDF002899D2 /* Impact.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Impact.ttf; sourceTree = "<group>"; };
 		B45776992BCD5BDF002899D2 /* Phosphate.ttc */ = {isa = PBXFileReference; lastKnownFileType = file; path = Phosphate.ttc; sourceTree = "<group>"; };
 		B45776F42BD0225B002899D2 /* MONO PQU.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "MONO PQU.ttf"; sourceTree = "<group>"; };
@@ -101,8 +101,8 @@
 		B45776DE2BCFF227002899D2 /* customCell */ = {
 			isa = PBXGroup;
 			children = (
-				B45776942BCBB989002899D2 /* newCellTableViewCell.xib */,
-				B45776932BCBB989002899D2 /* newCellTableViewCell.swift */,
+				B45776942BCBB989002899D2 /* NewCellTableViewCell.xib */,
+				B45776932BCBB989002899D2 /* NewCellTableViewCell.swift */,
 			);
 			path = customCell;
 			sourceTree = "<group>";
@@ -167,7 +167,7 @@
 			files = (
 				B45733CA2B9DDB9D007A734C /* Assets.xcassets in Resources */,
 				B45733CD2B9DDB9D007A734C /* Base in Resources */,
-				B45776962BCBB989002899D2 /* newCellTableViewCell.xib in Resources */,
+				B45776962BCBB989002899D2 /* NewCellTableViewCell.xib in Resources */,
 				B45733C82B9DDB9A007A734C /* Base in Resources */,
 				B457769B2BCD5BDF002899D2 /* Impact.ttf in Resources */,
 				B457769D2BCD5BDF002899D2 /* Phosphate.ttc in Resources */,
@@ -184,7 +184,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B45733C52B9DDB9A007A734C /* ViewController.swift in Sources */,
-				B45776952BCBB989002899D2 /* newCellTableViewCell.swift in Sources */,
+				B45776952BCBB989002899D2 /* NewCellTableViewCell.swift in Sources */,
 				B45733C12B9DDB9A007A734C /* AppDelegate.swift in Sources */,
 				B45733C32B9DDB9A007A734C /* SceneDelegate.swift in Sources */,
 				B45775BD2BA45A85002899D2 /* DetailsViewController.swift in Sources */,

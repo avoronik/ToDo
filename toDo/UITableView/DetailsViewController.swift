@@ -19,6 +19,9 @@ class DetailsViewController: UIViewController {
     
     @IBOutlet weak var textField: UITextField!
     
+    @IBOutlet weak var datePicker: UIDatePicker!
+   
+    
     var segment = UISegmentedControl()
     
     var imageArray: [UIImage] = [ UIImage(systemName: "cart.fill")!,
@@ -35,17 +38,16 @@ class DetailsViewController: UIViewController {
         super.viewDidLoad()
         
         setupSegmentedControll()
-        
+        datePicker.translatesAutoresizingMaskIntoConstraints = false
+        datePicker.datePickerMode = .date
     }
-    
     
     @IBAction func saveData(_ sender: UIButton) {
         if let name = textField.text, !name.isEmpty {
             let index = segment.selectedSegmentIndex
             let image: UIImage = imageArray[index]
             let groupName = group[index]
-            let note = Note(title: name, image: image, group: groupName, isCompleted: false)
-
+            let note = Note(title: name, image: image, group: groupName, isCompleted: false, date: datePicker.date.startOfDay)
             
             delegate?.save(data: note)
             self.navigationController?.popToRootViewController(animated: true)
@@ -69,7 +71,8 @@ class DetailsViewController: UIViewController {
                 segment.bottomAnchor.constraint(equalTo: textField.topAnchor, constant: -50),
                 segment.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 15),
                 segment.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -15),
-                segment.heightAnchor.constraint(equalToConstant: 30)
+                segment.heightAnchor.constraint(equalToConstant: 30),
+                
             ])
             
             segment.setImage(imageArray[0], forSegmentAt: 0)
@@ -80,6 +83,7 @@ class DetailsViewController: UIViewController {
             segment.setImage(imageArray[5], forSegmentAt: 5)
             
         }
+        
     }
     
 

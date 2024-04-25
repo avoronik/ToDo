@@ -9,22 +9,12 @@ import UIKit
 
 
 
-class ViewController: UIViewController, newCellDelegate {
-   
-   
+class ViewController: UIViewController, NewCellDelegate {
+    
     var newNote: [Note] = []
     var completed: [Note] = []
     
-//    let attrString = NSMutableAttributedString(string: note.title)
-//    attrString.addAttributes([
-//        .foregroundColor: UIColor.systemRed
-//    ], range: NSRange(location: .zero, length: 1))
-//    attrString.addAttributes([
-//        .font: UIFont(name: "MONO PQU", size: 20)!
-//    ], range: NSRange(location: .zero, length: attrString.string.count))
-//    firstTitle.attributedText = attrString
-//    
-    private var mainTitle: UILabel = {
+    var mainTitle: UILabel = {
     var mainTitle = UILabel()
        let getDate = Date()
         let dateFormatter: DateFormatter = {
@@ -43,8 +33,6 @@ class ViewController: UIViewController, newCellDelegate {
         mainTitle.attributedText = attrString
         mainTitle.numberOfLines = 2
         mainTitle.font = (UIFont(name: "MONO PQU", size: 35))
-//            .monospacedSystemFont(ofSize: 30, weight: .heavy)
-
            
         mainTitle.textAlignment = .left
         return mainTitle
@@ -63,8 +51,7 @@ class ViewController: UIViewController, newCellDelegate {
         setupUI()
     }
 
-    func noteIsDone(cell: newCellTableViewCell) {
-        guard let index = tableView.indexPath(for: cell) else {return}
+    func noteIsDone(at index: IndexPath) {
         
         switch index.section {
         case 0:
@@ -108,7 +95,7 @@ extension ViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "\(newCellTableViewCell.self)", for: indexPath) as? newCellTableViewCell else { fatalError("cell not found")
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "\(NewCellTableViewCell.self)", for: indexPath) as? NewCellTableViewCell else { fatalError("cell not found")
         }
         
         switch indexPath.section {
@@ -117,16 +104,17 @@ extension ViewController: UITableViewDataSource {
             if indexPath.row < newNote.count {
                 let newNoteCell = newNote[indexPath.row]
                 cell.delegate = self
-                cell.addNote(note: newNoteCell, isCompleted: false)
+                cell.setup(note: newNoteCell, at: indexPath)
             }
         case 1:
 
             if  indexPath.row < completed.count {
                 let completedCell = completed[indexPath.row]
                 cell.delegate = self
-                cell.addNote(note: completedCell, isCompleted: true)
+                cell.setup(note: completedCell, at: indexPath)
                 
             }
+            
         default:
             let cellDefault = UITableViewCell()
             return cellDefault
@@ -142,7 +130,7 @@ extension ViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
        
-            return UITableView.automaticDimension
+        return UITableView.automaticDimension
     }
     
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
@@ -179,7 +167,6 @@ extension ViewController: UITableViewDelegate {
             default:
                 print("nothing to delete")
             }
-//            tableView.deleteRows(at: [indexPath], with: .fade)
             updNotesCounter()
             tableView.reloadData()
         }
@@ -189,11 +176,10 @@ extension ViewController: UITableViewDelegate {
         return false
     }
     
-//    func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
-//       
-//        newNote.swapAt(sourceIndexPath.row, destinationIndexPath.row)
-//       
-//    }
+    func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
+        newNote.swapAt(sourceIndexPath.row, destinationIndexPath.row)
+       
+    }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         switch section {
@@ -231,20 +217,16 @@ extension ViewController: UITableViewDelegate {
                 tableView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
                 tableView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
                 tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
-               
-            ])
+                ])
+            
             let editButton = UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(tapEditButton))
             editButton.tintColor = .black
-            
             self.navigationItem.leftBarButtonItem = editButton
-            
             let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addItem))
             addButton.tintColor = .black
-            
             self.navigationItem.rightBarButtonItem = addButton
         }
         
-       
         func makeNotesCounter() -> UILabel {
             let counter = UILabel()
             counter.translatesAutoresizingMaskIntoConstraints = false
@@ -253,7 +235,6 @@ extension ViewController: UITableViewDelegate {
             counter.font = (UIFont(name: "MONO PQU", size: 15))
             counter.textAlignment = .left
             counter.text = "In Complete: \(newNote.count), Completed: \(completed.count)"
-            
             return counter
         }
         
@@ -269,29 +250,21 @@ extension ViewController: UITableViewDelegate {
             table.translatesAutoresizingMaskIntoConstraints = false
             table.delegate = self
             table.dataSource = self
-            // регистрация кастомной ячейки, имя файла ячейки, бандл нил, тк ячейка находится в одном файле с проектом
-            
-            table.register(UINib(nibName: "newCellTableViewCell", bundle: nil ), forCellReuseIdentifier: "newCellTableViewCell")
-            
+            table.register(UINib(nibName: "NewCellTableViewCell", bundle: nil ), forCellReuseIdentifier: "NewCellTableViewCell")
             return table
         }
         
         @objc
         func tapEditButton() {
-            
             tableView.isEditing = !tableView.isEditing
         }
         
         @objc
         func addItem() {
-//            tableView.reloadData()
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             guard let vc = storyboard.instantiateViewController(withIdentifier: "DetailsViewController") as? DetailsViewController else {return}
             vc.delegate = self
-            
-            
            self.navigationController?.pushViewController(vc, animated: true)
-            
         }
     }
     
@@ -305,7 +278,4 @@ extension ViewController: DetailsViewControllerDelegate {
 
     
 
-//ндекс соответствует ячейке сегмент контроля - index
-// model[index].count - достаем массив данных относящихся к группе сегмент контроля
-// model[index][indexPath.row] - для того, чтобы вытянуть конкретный элемент из массива - это будет тайтл
 
